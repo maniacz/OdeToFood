@@ -40,6 +40,7 @@ namespace OdeToFood.Data
             return db.Restaurants.Find(restaurantId);
         }
 
+
         public IEnumerable<Restaurant> GetRestaurantsByName(string name)
         {
             return db.Restaurants.Where(r => r.Name.StartsWith(name) || string.IsNullOrEmpty(name)).OrderBy(r => r.Name);
@@ -50,6 +51,10 @@ namespace OdeToFood.Data
             var entity = db.Restaurants.Attach(updatedRestaurant);
             entity.State = EntityState.Modified;
             return updatedRestaurant;
+        }
+        public int GetCountOfRestaurants()
+        {
+            return db.Restaurants.Count();
         }
     }
 }
